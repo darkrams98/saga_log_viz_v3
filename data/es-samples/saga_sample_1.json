@@ -1,0 +1,2148 @@
+{
+  "_index": "saga-logs-rev-000145",
+  "_type": "_doc",
+  "_id": "PdoaD6ABdWT9oQ8K07R5",
+  "_version": 1,
+  "_score": 1,
+  "_source": {
+    "title": "PROMISSORY_INQUIRY_BY_CUSTOMER_INFO_PROCESS",
+    "registerId": "34ef4b56-3971-45ba-81fb-f521819be5c3",
+    "deviceId": null,
+    "@version": "1",
+    "completeDate": null,
+    "startDate": 1786959810291,
+    "level_value": 20000,
+    "status": "ROLL_BACKED",
+    "kafkaSynchronize": null,
+    "host": "CIT01VL18",
+    "platform": null,
+    "response": "%{[commandList][0][response]}",
+    "userIp": "5.121.150.137",
+    "deviceBrand": null,
+    "time": "2026-08-17T13:13:30.635+03:30",
+    "sequenceContext": {},
+    "applicationName": "orchestrator25",
+    "level": "INFO",
+    "id": "1179f75cd7e54d0b8f4fd964e3934a18",
+    "version": null,
+    "port": 38736,
+    "logger_name": "sagaLogger",
+    "rollbackDescription": "شماره ملی وارد شده صحیح نمی‌باشد",
+    "commandList": [
+      {
+        "sequenceId": "1179f75cd7e54d0b8f4fd964e3934a18",
+        "responseClassName": null,
+        "title": "INQUIRY_PROMISSORY_TASK",
+        "commandUser": "d1708605649",
+        "customerId": "34ef4b56-3971-45ba-81fb-f521819be5c3",
+        "schemaVersion": 1,
+        "deviceId": "SM-M315F",
+        "commandContent": "{\"issuerNN\":\"1700860564\",\"promissoryId\":\"6580276187413132\"}",
+        "startDate": 1786959810299,
+        "status": "ROLL_BACKED",
+        "response": null,
+        "requestClassName": "com.citydi.microservice.core.shared.model.promissory.inquiry.request.PromissoryInquiryRequestDto",
+        "platform": "Android",
+        "commandType": "INQUIRY_PROMISSORY",
+        "userIP": "5.121.150.137",
+        "routingKey": "orchestration25.digital.signature.routing.key",
+        "deviceBrand": "samsung",
+        "responseHeader": null,
+        "version": "7.2.1",
+        "id": "82be1cc6dcfd414c947ed3998a8d10f1",
+        "rollbackDescription": null,
+        "rollbackRequired": false,
+        "rollbackException": null,
+        "endDate": null,
+        "commandDate": null,
+        "requestHeader": null,
+        "onRollbackBehavior": "ROLLBACK_SEQUENCE"
+      }
+    ],
+    "sagaVersion": "12",
+    "profile": "prod",
+    "rollbackException": {
+      "cause": null,
+      "stackTrace": [
+        {
+          "lineNumber": 224,
+          "nativeMethod": false,
+          "methodName": "executeTask",
+          "fileName": "ProcessExecutor.java",
+          "className": "com.citydi.microservice.orchestrator.process.ProcessExecutor"
+        },
+        {
+          "lineNumber": 102,
+          "nativeMethod": false,
+          "methodName": "executeProcess",
+          "fileName": "ProcessExecutor.java",
+          "className": "com.citydi.microservice.orchestrator.process.ProcessExecutor"
+        },
+        {
+          "lineNumber": 66,
+          "nativeMethod": false,
+          "methodName": "executeProcessAndSecureResult",
+          "fileName": "ProcessExecutor.java",
+          "className": "com.citydi.microservice.orchestrator.process.ProcessExecutor"
+        },
+        {
+          "lineNumber": 185,
+          "nativeMethod": false,
+          "methodName": "inquirePromissoryByCustomerDetails",
+          "fileName": "PromissoryServiceImpl.java",
+          "className": "com.citydi.microservice.orchestrator.service.promissory.PromissoryServiceImpl"
+        },
+        {
+          "lineNumber": 54,
+          "nativeMethod": false,
+          "methodName": "promissoryInquireByCustomerDetailsRequest",
+          "fileName": "PromissoryNoteController.java",
+          "className": "com.citydi.microservice.orchestrator.rest.promissory.PromissoryNoteController"
+        },
+        {
+          "lineNumber": -1,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": "<generated>",
+          "className": "com.citydi.microservice.orchestrator.rest.promissory.PromissoryNoteController$$FastClassBySpringCGLIB$$f58035da"
+        },
+        {
+          "lineNumber": 218,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": "MethodProxy.java",
+          "className": "org.springframework.cglib.proxy.MethodProxy"
+        },
+        {
+          "lineNumber": 793,
+          "nativeMethod": false,
+          "methodName": "invokeJoinpoint",
+          "fileName": "CglibAopProxy.java",
+          "className": "org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation"
+        },
+        {
+          "lineNumber": 163,
+          "nativeMethod": false,
+          "methodName": "proceed",
+          "fileName": "ReflectiveMethodInvocation.java",
+          "className": "org.springframework.aop.framework.ReflectiveMethodInvocation"
+        },
+        {
+          "lineNumber": 763,
+          "nativeMethod": false,
+          "methodName": "proceed",
+          "fileName": "CglibAopProxy.java",
+          "className": "org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation"
+        },
+        {
+          "lineNumber": 61,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": "MethodSecurityInterceptor.java",
+          "className": "org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor"
+        },
+        {
+          "lineNumber": 186,
+          "nativeMethod": false,
+          "methodName": "proceed",
+          "fileName": "ReflectiveMethodInvocation.java",
+          "className": "org.springframework.aop.framework.ReflectiveMethodInvocation"
+        },
+        {
+          "lineNumber": 763,
+          "nativeMethod": false,
+          "methodName": "proceed",
+          "fileName": "CglibAopProxy.java",
+          "className": "org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation"
+        },
+        {
+          "lineNumber": 708,
+          "nativeMethod": false,
+          "methodName": "intercept",
+          "fileName": "CglibAopProxy.java",
+          "className": "org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor"
+        },
+        {
+          "lineNumber": -1,
+          "nativeMethod": false,
+          "methodName": "promissoryInquireByCustomerDetailsRequest",
+          "fileName": "<generated>",
+          "className": "com.citydi.microservice.orchestrator.rest.promissory.PromissoryNoteController$$EnhancerBySpringCGLIB$$291ee433"
+        },
+        {
+          "lineNumber": -1,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": null,
+          "className": "sun.reflect.GeneratedMethodAccessor6089"
+        },
+        {
+          "lineNumber": 43,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": "DelegatingMethodAccessorImpl.java",
+          "className": "sun.reflect.DelegatingMethodAccessorImpl"
+        },
+        {
+          "lineNumber": 498,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": "Method.java",
+          "className": "java.lang.reflect.Method"
+        },
+        {
+          "lineNumber": 205,
+          "nativeMethod": false,
+          "methodName": "doInvoke",
+          "fileName": "InvocableHandlerMethod.java",
+          "className": "org.springframework.web.method.support.InvocableHandlerMethod"
+        },
+        {
+          "lineNumber": 150,
+          "nativeMethod": false,
+          "methodName": "invokeForRequest",
+          "fileName": "InvocableHandlerMethod.java",
+          "className": "org.springframework.web.method.support.InvocableHandlerMethod"
+        },
+        {
+          "lineNumber": 117,
+          "nativeMethod": false,
+          "methodName": "invokeAndHandle",
+          "fileName": "ServletInvocableHandlerMethod.java",
+          "className": "org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod"
+        },
+        {
+          "lineNumber": 895,
+          "nativeMethod": false,
+          "methodName": "invokeHandlerMethod",
+          "fileName": "RequestMappingHandlerAdapter.java",
+          "className": "org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"
+        },
+        {
+          "lineNumber": 808,
+          "nativeMethod": false,
+          "methodName": "handleInternal",
+          "fileName": "RequestMappingHandlerAdapter.java",
+          "className": "org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"
+        },
+        {
+          "lineNumber": 87,
+          "nativeMethod": false,
+          "methodName": "handle",
+          "fileName": "AbstractHandlerMethodAdapter.java",
+          "className": "org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter"
+        },
+        {
+          "lineNumber": 1072,
+          "nativeMethod": false,
+          "methodName": "doDispatch",
+          "fileName": "DispatcherServlet.java",
+          "className": "org.springframework.web.servlet.DispatcherServlet"
+        },
+        {
+          "lineNumber": 965,
+          "nativeMethod": false,
+          "methodName": "doService",
+          "fileName": "DispatcherServlet.java",
+          "className": "org.springframework.web.servlet.DispatcherServlet"
+        },
+        {
+          "lineNumber": 1006,
+          "nativeMethod": false,
+          "methodName": "processRequest",
+          "fileName": "FrameworkServlet.java",
+          "className": "org.springframework.web.servlet.FrameworkServlet"
+        },
+        {
+          "lineNumber": 898,
+          "nativeMethod": false,
+          "methodName": "doGet",
+          "fileName": "FrameworkServlet.java",
+          "className": "org.springframework.web.servlet.FrameworkServlet"
+        },
+        {
+          "lineNumber": 626,
+          "nativeMethod": false,
+          "methodName": "service",
+          "fileName": "HttpServlet.java",
+          "className": "javax.servlet.http.HttpServlet"
+        },
+        {
+          "lineNumber": 883,
+          "nativeMethod": false,
+          "methodName": "service",
+          "fileName": "FrameworkServlet.java",
+          "className": "org.springframework.web.servlet.FrameworkServlet"
+        },
+        {
+          "lineNumber": 733,
+          "nativeMethod": false,
+          "methodName": "service",
+          "fileName": "HttpServlet.java",
+          "className": "javax.servlet.http.HttpServlet"
+        },
+        {
+          "lineNumber": 227,
+          "nativeMethod": false,
+          "methodName": "internalDoFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 162,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 53,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "WsFilter.java",
+          "className": "org.apache.tomcat.websocket.server.WsFilter"
+        },
+        {
+          "lineNumber": 189,
+          "nativeMethod": false,
+          "methodName": "internalDoFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 162,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 42,
+          "nativeMethod": false,
+          "methodName": "doFilterInternal",
+          "fileName": "HeaderFilter.java",
+          "className": "com.citydi.microservice.orchestrator.filter.HeaderFilter"
+        },
+        {
+          "lineNumber": 117,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "OncePerRequestFilter.java",
+          "className": "org.springframework.web.filter.OncePerRequestFilter"
+        },
+        {
+          "lineNumber": 189,
+          "nativeMethod": false,
+          "methodName": "internalDoFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 162,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 337,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 115,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": "FilterSecurityInterceptor.java",
+          "className": "org.springframework.security.web.access.intercept.FilterSecurityInterceptor"
+        },
+        {
+          "lineNumber": 81,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterSecurityInterceptor.java",
+          "className": "org.springframework.security.web.access.intercept.FilterSecurityInterceptor"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 122,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "ExceptionTranslationFilter.java",
+          "className": "org.springframework.security.web.access.ExceptionTranslationFilter"
+        },
+        {
+          "lineNumber": 116,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "ExceptionTranslationFilter.java",
+          "className": "org.springframework.security.web.access.ExceptionTranslationFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 126,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "SessionManagementFilter.java",
+          "className": "org.springframework.security.web.session.SessionManagementFilter"
+        },
+        {
+          "lineNumber": 81,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "SessionManagementFilter.java",
+          "className": "org.springframework.security.web.session.SessionManagementFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 109,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "AnonymousAuthenticationFilter.java",
+          "className": "org.springframework.security.web.authentication.AnonymousAuthenticationFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 149,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "SecurityContextHolderAwareRequestFilter.java",
+          "className": "org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 63,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "RequestCacheAwareFilter.java",
+          "className": "org.springframework.security.web.savedrequest.RequestCacheAwareFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 115,
+          "nativeMethod": false,
+          "methodName": "checkInternal",
+          "fileName": "JwtAuthenticationFilter.java",
+          "className": "com.citydi.microservice.orchestrator.jwt.JwtAuthenticationFilter"
+        },
+        {
+          "lineNumber": 50,
+          "nativeMethod": false,
+          "methodName": "doFilterInternal",
+          "fileName": "JwtAuthenticationFilter.java",
+          "className": "com.citydi.microservice.orchestrator.jwt.JwtAuthenticationFilter"
+        },
+        {
+          "lineNumber": 117,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "OncePerRequestFilter.java",
+          "className": "org.springframework.web.filter.OncePerRequestFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 102,
+          "nativeMethod": false,
+          "methodName": "doFilterInternal",
+          "fileName": "RegistrationTokenCheckFilter.java",
+          "className": "com.citydi.microservice.orchestrator.jwt.RegistrationTokenCheckFilter"
+        },
+        {
+          "lineNumber": 117,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "OncePerRequestFilter.java",
+          "className": "org.springframework.web.filter.OncePerRequestFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 53,
+          "nativeMethod": false,
+          "methodName": "checkInternal",
+          "fileName": "JwtThirdPartyFilter.java",
+          "className": "com.citydi.microservice.orchestrator.jwt.JwtThirdPartyFilter"
+        },
+        {
+          "lineNumber": 45,
+          "nativeMethod": false,
+          "methodName": "doFilterInternal",
+          "fileName": "JwtThirdPartyFilter.java",
+          "className": "com.citydi.microservice.orchestrator.jwt.JwtThirdPartyFilter"
+        },
+        {
+          "lineNumber": 117,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "OncePerRequestFilter.java",
+          "className": "org.springframework.web.filter.OncePerRequestFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 103,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "LogoutFilter.java",
+          "className": "org.springframework.security.web.authentication.logout.LogoutFilter"
+        },
+        {
+          "lineNumber": 89,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "LogoutFilter.java",
+          "className": "org.springframework.security.web.authentication.logout.LogoutFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 90,
+          "nativeMethod": false,
+          "methodName": "doHeadersAfter",
+          "fileName": "HeaderWriterFilter.java",
+          "className": "org.springframework.security.web.header.HeaderWriterFilter"
+        },
+        {
+          "lineNumber": 75,
+          "nativeMethod": false,
+          "methodName": "doFilterInternal",
+          "fileName": "HeaderWriterFilter.java",
+          "className": "org.springframework.security.web.header.HeaderWriterFilter"
+        },
+        {
+          "lineNumber": 117,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "OncePerRequestFilter.java",
+          "className": "org.springframework.web.filter.OncePerRequestFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 112,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "SecurityContextPersistenceFilter.java",
+          "className": "org.springframework.security.web.context.SecurityContextPersistenceFilter"
+        },
+        {
+          "lineNumber": 82,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "SecurityContextPersistenceFilter.java",
+          "className": "org.springframework.security.web.context.SecurityContextPersistenceFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 55,
+          "nativeMethod": false,
+          "methodName": "doFilterInternal",
+          "fileName": "WebAsyncManagerIntegrationFilter.java",
+          "className": "org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter"
+        },
+        {
+          "lineNumber": 117,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "OncePerRequestFilter.java",
+          "className": "org.springframework.web.filter.OncePerRequestFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 42,
+          "nativeMethod": false,
+          "methodName": "doFilterInternal",
+          "fileName": "DisableEncodeUrlFilter.java",
+          "className": "org.springframework.security.web.session.DisableEncodeUrlFilter"
+        },
+        {
+          "lineNumber": 117,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "OncePerRequestFilter.java",
+          "className": "org.springframework.web.filter.OncePerRequestFilter"
+        },
+        {
+          "lineNumber": 346,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy$VirtualFilterChain"
+        },
+        {
+          "lineNumber": 221,
+          "nativeMethod": false,
+          "methodName": "doFilterInternal",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy"
+        },
+        {
+          "lineNumber": 186,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "FilterChainProxy.java",
+          "className": "org.springframework.security.web.FilterChainProxy"
+        },
+        {
+          "lineNumber": 354,
+          "nativeMethod": false,
+          "methodName": "invokeDelegate",
+          "fileName": "DelegatingFilterProxy.java",
+          "className": "org.springframework.web.filter.DelegatingFilterProxy"
+        },
+        {
+          "lineNumber": 267,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "DelegatingFilterProxy.java",
+          "className": "org.springframework.web.filter.DelegatingFilterProxy"
+        },
+        {
+          "lineNumber": 189,
+          "nativeMethod": false,
+          "methodName": "internalDoFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 162,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 100,
+          "nativeMethod": false,
+          "methodName": "doFilterInternal",
+          "fileName": "RequestContextFilter.java",
+          "className": "org.springframework.web.filter.RequestContextFilter"
+        },
+        {
+          "lineNumber": 117,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "OncePerRequestFilter.java",
+          "className": "org.springframework.web.filter.OncePerRequestFilter"
+        },
+        {
+          "lineNumber": 189,
+          "nativeMethod": false,
+          "methodName": "internalDoFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 162,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 93,
+          "nativeMethod": false,
+          "methodName": "doFilterInternal",
+          "fileName": "FormContentFilter.java",
+          "className": "org.springframework.web.filter.FormContentFilter"
+        },
+        {
+          "lineNumber": 117,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "OncePerRequestFilter.java",
+          "className": "org.springframework.web.filter.OncePerRequestFilter"
+        },
+        {
+          "lineNumber": 189,
+          "nativeMethod": false,
+          "methodName": "internalDoFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 162,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 201,
+          "nativeMethod": false,
+          "methodName": "doFilterInternal",
+          "fileName": "CharacterEncodingFilter.java",
+          "className": "org.springframework.web.filter.CharacterEncodingFilter"
+        },
+        {
+          "lineNumber": 117,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "OncePerRequestFilter.java",
+          "className": "org.springframework.web.filter.OncePerRequestFilter"
+        },
+        {
+          "lineNumber": 189,
+          "nativeMethod": false,
+          "methodName": "internalDoFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 162,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 28,
+          "nativeMethod": false,
+          "methodName": "doFilterInternal",
+          "fileName": "CORSFilter.java",
+          "className": "com.citydi.microservice.orchestrator.cors.CORSFilter"
+        },
+        {
+          "lineNumber": 117,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "OncePerRequestFilter.java",
+          "className": "org.springframework.web.filter.OncePerRequestFilter"
+        },
+        {
+          "lineNumber": 189,
+          "nativeMethod": false,
+          "methodName": "internalDoFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 162,
+          "nativeMethod": false,
+          "methodName": "doFilter",
+          "fileName": "ApplicationFilterChain.java",
+          "className": "org.apache.catalina.core.ApplicationFilterChain"
+        },
+        {
+          "lineNumber": 202,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": "StandardWrapperValve.java",
+          "className": "org.apache.catalina.core.StandardWrapperValve"
+        },
+        {
+          "lineNumber": 97,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": "StandardContextValve.java",
+          "className": "org.apache.catalina.core.StandardContextValve"
+        },
+        {
+          "lineNumber": 542,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": "AuthenticatorBase.java",
+          "className": "org.apache.catalina.authenticator.AuthenticatorBase"
+        },
+        {
+          "lineNumber": 143,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": "StandardHostValve.java",
+          "className": "org.apache.catalina.core.StandardHostValve"
+        },
+        {
+          "lineNumber": 92,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": "ErrorReportValve.java",
+          "className": "org.apache.catalina.valves.ErrorReportValve"
+        },
+        {
+          "lineNumber": 78,
+          "nativeMethod": false,
+          "methodName": "invoke",
+          "fileName": "StandardEngineValve.java",
+          "className": "org.apache.catalina.core.StandardEngineValve"
+        },
+        {
+          "lineNumber": 357,
+          "nativeMethod": false,
+          "methodName": "service",
+          "fileName": "CoyoteAdapter.java",
+          "className": "org.apache.catalina.connector.CoyoteAdapter"
+        },
+        {
+          "lineNumber": 374,
+          "nativeMethod": false,
+          "methodName": "service",
+          "fileName": "Http11Processor.java",
+          "className": "org.apache.coyote.http11.Http11Processor"
+        },
+        {
+          "lineNumber": 65,
+          "nativeMethod": false,
+          "methodName": "process",
+          "fileName": "AbstractProcessorLight.java",
+          "className": "org.apache.coyote.AbstractProcessorLight"
+        },
+        {
+          "lineNumber": 893,
+          "nativeMethod": false,
+          "methodName": "process",
+          "fileName": "AbstractProtocol.java",
+          "className": "org.apache.coyote.AbstractProtocol$ConnectionHandler"
+        },
+        {
+          "lineNumber": 1707,
+          "nativeMethod": false,
+          "methodName": "doRun",
+          "fileName": "NioEndpoint.java",
+          "className": "org.apache.tomcat.util.net.NioEndpoint$SocketProcessor"
+        },
+        {
+          "lineNumber": 49,
+          "nativeMethod": false,
+          "methodName": "run",
+          "fileName": "SocketProcessorBase.java",
+          "className": "org.apache.tomcat.util.net.SocketProcessorBase"
+        },
+        {
+          "lineNumber": 1149,
+          "nativeMethod": false,
+          "methodName": "runWorker",
+          "fileName": "ThreadPoolExecutor.java",
+          "className": "java.util.concurrent.ThreadPoolExecutor"
+        },
+        {
+          "lineNumber": 624,
+          "nativeMethod": false,
+          "methodName": "run",
+          "fileName": "ThreadPoolExecutor.java",
+          "className": "java.util.concurrent.ThreadPoolExecutor$Worker"
+        },
+        {
+          "lineNumber": 61,
+          "nativeMethod": false,
+          "methodName": "run",
+          "fileName": "TaskThread.java",
+          "className": "org.apache.tomcat.util.threads.TaskThread$WrappingRunnable"
+        },
+        {
+          "lineNumber": 748,
+          "nativeMethod": false,
+          "methodName": "run",
+          "fileName": "Thread.java",
+          "className": "java.lang.Thread"
+        }
+      ],
+      "microServiceName": "ORCHESTRATOR",
+      "localeMessage": "شماره ملی وارد شده صحیح نمی‌باشد",
+      "exceptionCode": 40038220,
+      "exceptionDetails": null,
+      "message": "DIGITAL_SIGNATURE",
+      "localizedMessage": "DIGITAL_SIGNATURE",
+      "suppressed": []
+    },
+    "creationDate": 1786959810291,
+    "@timestamp": "2026-08-17T09:43:30.637Z",
+    "thread_name": "http-nio-6061-exec-302"
+  },
+  "fields": {
+    "commandList.schemaVersion": [
+      1
+    ],
+    "rollbackException.stackTrace.nativeMethod": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "sagaVersion": [
+      "12"
+    ],
+    "rollbackException.microServiceName": [
+      "ORCHESTRATOR"
+    ],
+    "commandList.startDate": [
+      1786959810299
+    ],
+    "commandList.id.keyword": [
+      "82be1cc6dcfd414c947ed3998a8d10f1"
+    ],
+    "commandList.commandContent.keyword": [
+      "{\"issuerNN\":\"1700860564\",\"promissoryId\":\"6580276187413132\"}"
+    ],
+    "title.keyword": [
+      "PROMISSORY_INQUIRY_BY_CUSTOMER_INFO_PROCESS"
+    ],
+    "response.keyword": [
+      "%{[commandList][0][response]}"
+    ],
+    "commandList.deviceId": [
+      "SM-M315F"
+    ],
+    "commandList.customerId": [
+      "34ef4b56-3971-45ba-81fb-f521819be5c3"
+    ],
+    "registerId": [
+      "34ef4b56-3971-45ba-81fb-f521819be5c3"
+    ],
+    "commandList.platform.keyword": [
+      "Android"
+    ],
+    "commandList.deviceBrand": [
+      "samsung"
+    ],
+    "host": [
+      "CIT01VL18"
+    ],
+    "commandList.onRollbackBehavior.keyword": [
+      "ROLLBACK_SEQUENCE"
+    ],
+    "id": [
+      "1179f75cd7e54d0b8f4fd964e3934a18"
+    ],
+    "logger_name": [
+      "sagaLogger"
+    ],
+    "commandList.deviceBrand.keyword": [
+      "samsung"
+    ],
+    "host.keyword": [
+      "CIT01VL18"
+    ],
+    "rollbackException.stackTrace.methodName": [
+      "executeTask",
+      "executeProcess",
+      "executeProcessAndSecureResult",
+      "inquirePromissoryByCustomerDetails",
+      "promissoryInquireByCustomerDetailsRequest",
+      "invoke",
+      "invoke",
+      "invokeJoinpoint",
+      "proceed",
+      "proceed",
+      "invoke",
+      "proceed",
+      "proceed",
+      "intercept",
+      "promissoryInquireByCustomerDetailsRequest",
+      "invoke",
+      "invoke",
+      "invoke",
+      "doInvoke",
+      "invokeForRequest",
+      "invokeAndHandle",
+      "invokeHandlerMethod",
+      "handleInternal",
+      "handle",
+      "doDispatch",
+      "doService",
+      "processRequest",
+      "doGet",
+      "service",
+      "service",
+      "service",
+      "internalDoFilter",
+      "doFilter",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "doFilter",
+      "invoke",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "checkInternal",
+      "doFilterInternal",
+      "doFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "doFilter",
+      "checkInternal",
+      "doFilterInternal",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doHeadersAfter",
+      "doFilterInternal",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "invokeDelegate",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "invoke",
+      "invoke",
+      "invoke",
+      "invoke",
+      "invoke",
+      "invoke",
+      "service",
+      "service",
+      "process",
+      "process",
+      "doRun",
+      "run",
+      "runWorker",
+      "run",
+      "run",
+      "run"
+    ],
+    "logger_name.keyword": [
+      "sagaLogger"
+    ],
+    "rollbackDescription": [
+      "شماره ملی وارد شده صحیح نمی‌باشد"
+    ],
+    "commandList.userIP": [
+      "5.121.150.137"
+    ],
+    "rollbackException.message.keyword": [
+      "DIGITAL_SIGNATURE"
+    ],
+    "rollbackException.localizedMessage": [
+      "DIGITAL_SIGNATURE"
+    ],
+    "thread_name.keyword": [
+      "http-nio-6061-exec-302"
+    ],
+    "commandList.commandUser.keyword": [
+      "d1708605649"
+    ],
+    "rollbackException.stackTrace.className.keyword": [
+      "com.citydi.microservice.orchestrator.process.ProcessExecutor",
+      "com.citydi.microservice.orchestrator.process.ProcessExecutor",
+      "com.citydi.microservice.orchestrator.process.ProcessExecutor",
+      "com.citydi.microservice.orchestrator.service.promissory.PromissoryServiceImpl",
+      "com.citydi.microservice.orchestrator.rest.promissory.PromissoryNoteController",
+      "com.citydi.microservice.orchestrator.rest.promissory.PromissoryNoteController$$FastClassBySpringCGLIB$$f58035da",
+      "org.springframework.cglib.proxy.MethodProxy",
+      "org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation",
+      "org.springframework.aop.framework.ReflectiveMethodInvocation",
+      "org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation",
+      "org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor",
+      "org.springframework.aop.framework.ReflectiveMethodInvocation",
+      "org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation",
+      "org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor",
+      "com.citydi.microservice.orchestrator.rest.promissory.PromissoryNoteController$$EnhancerBySpringCGLIB$$291ee433",
+      "sun.reflect.GeneratedMethodAccessor6089",
+      "sun.reflect.DelegatingMethodAccessorImpl",
+      "java.lang.reflect.Method",
+      "org.springframework.web.method.support.InvocableHandlerMethod",
+      "org.springframework.web.method.support.InvocableHandlerMethod",
+      "org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod",
+      "org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter",
+      "org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter",
+      "org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter",
+      "org.springframework.web.servlet.DispatcherServlet",
+      "org.springframework.web.servlet.DispatcherServlet",
+      "org.springframework.web.servlet.FrameworkServlet",
+      "org.springframework.web.servlet.FrameworkServlet",
+      "javax.servlet.http.HttpServlet",
+      "org.springframework.web.servlet.FrameworkServlet",
+      "javax.servlet.http.HttpServlet",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.tomcat.websocket.server.WsFilter",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "com.citydi.microservice.orchestrator.filter.HeaderFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.access.intercept.FilterSecurityInterceptor",
+      "org.springframework.security.web.access.intercept.FilterSecurityInterceptor",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.access.ExceptionTranslationFilter",
+      "org.springframework.security.web.access.ExceptionTranslationFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.session.SessionManagementFilter",
+      "org.springframework.security.web.session.SessionManagementFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.authentication.AnonymousAuthenticationFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.savedrequest.RequestCacheAwareFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "com.citydi.microservice.orchestrator.jwt.JwtAuthenticationFilter",
+      "com.citydi.microservice.orchestrator.jwt.JwtAuthenticationFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "com.citydi.microservice.orchestrator.jwt.RegistrationTokenCheckFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "com.citydi.microservice.orchestrator.jwt.JwtThirdPartyFilter",
+      "com.citydi.microservice.orchestrator.jwt.JwtThirdPartyFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.authentication.logout.LogoutFilter",
+      "org.springframework.security.web.authentication.logout.LogoutFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.header.HeaderWriterFilter",
+      "org.springframework.security.web.header.HeaderWriterFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.context.SecurityContextPersistenceFilter",
+      "org.springframework.security.web.context.SecurityContextPersistenceFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.session.DisableEncodeUrlFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.FilterChainProxy",
+      "org.springframework.security.web.FilterChainProxy",
+      "org.springframework.web.filter.DelegatingFilterProxy",
+      "org.springframework.web.filter.DelegatingFilterProxy",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.springframework.web.filter.RequestContextFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.springframework.web.filter.FormContentFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.springframework.web.filter.CharacterEncodingFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "com.citydi.microservice.orchestrator.cors.CORSFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.StandardWrapperValve",
+      "org.apache.catalina.core.StandardContextValve",
+      "org.apache.catalina.authenticator.AuthenticatorBase",
+      "org.apache.catalina.core.StandardHostValve",
+      "org.apache.catalina.valves.ErrorReportValve",
+      "org.apache.catalina.core.StandardEngineValve",
+      "org.apache.catalina.connector.CoyoteAdapter",
+      "org.apache.coyote.http11.Http11Processor",
+      "org.apache.coyote.AbstractProcessorLight",
+      "org.apache.coyote.AbstractProtocol$ConnectionHandler",
+      "org.apache.tomcat.util.net.NioEndpoint$SocketProcessor",
+      "org.apache.tomcat.util.net.SocketProcessorBase",
+      "java.util.concurrent.ThreadPoolExecutor",
+      "java.util.concurrent.ThreadPoolExecutor$Worker",
+      "org.apache.tomcat.util.threads.TaskThread$WrappingRunnable",
+      "java.lang.Thread"
+    ],
+    "level": [
+      "INFO"
+    ],
+    "rollbackException.localeMessage": [
+      "شماره ملی وارد شده صحیح نمی‌باشد"
+    ],
+    "profile": [
+      "prod"
+    ],
+    "registerId.keyword": [
+      "34ef4b56-3971-45ba-81fb-f521819be5c3"
+    ],
+    "commandList.routingKey.keyword": [
+      "orchestration25.digital.signature.routing.key"
+    ],
+    "profile.keyword": [
+      "prod"
+    ],
+    "commandList.commandType": [
+      "INQUIRY_PROMISSORY"
+    ],
+    "commandList.title.keyword": [
+      "INQUIRY_PROMISSORY_TASK"
+    ],
+    "creationDate": [
+      1786959810291
+    ],
+    "rollbackException.localizedMessage.keyword": [
+      "DIGITAL_SIGNATURE"
+    ],
+    "commandList.title": [
+      "INQUIRY_PROMISSORY_TASK"
+    ],
+    "commandList.userIP.keyword": [
+      "5.121.150.137"
+    ],
+    "port": [
+      38736
+    ],
+    "level_value": [
+      20000
+    ],
+    "thread_name": [
+      "http-nio-6061-exec-302"
+    ],
+    "commandList.status.keyword": [
+      "ROLL_BACKED"
+    ],
+    "rollbackException.exceptionCode": [
+      40038220
+    ],
+    "commandList.status": [
+      "ROLL_BACKED"
+    ],
+    "rollbackDescription.keyword": [
+      "شماره ملی وارد شده صحیح نمی‌باشد"
+    ],
+    "commandList.commandUser": [
+      "d1708605649"
+    ],
+    "commandList.sequenceId": [
+      "1179f75cd7e54d0b8f4fd964e3934a18"
+    ],
+    "startDate": [
+      1786959810291
+    ],
+    "rollbackException.stackTrace.fileName": [
+      "ProcessExecutor.java",
+      "ProcessExecutor.java",
+      "ProcessExecutor.java",
+      "PromissoryServiceImpl.java",
+      "PromissoryNoteController.java",
+      "<generated>",
+      "MethodProxy.java",
+      "CglibAopProxy.java",
+      "ReflectiveMethodInvocation.java",
+      "CglibAopProxy.java",
+      "MethodSecurityInterceptor.java",
+      "ReflectiveMethodInvocation.java",
+      "CglibAopProxy.java",
+      "CglibAopProxy.java",
+      "<generated>",
+      "DelegatingMethodAccessorImpl.java",
+      "Method.java",
+      "InvocableHandlerMethod.java",
+      "InvocableHandlerMethod.java",
+      "ServletInvocableHandlerMethod.java",
+      "RequestMappingHandlerAdapter.java",
+      "RequestMappingHandlerAdapter.java",
+      "AbstractHandlerMethodAdapter.java",
+      "DispatcherServlet.java",
+      "DispatcherServlet.java",
+      "FrameworkServlet.java",
+      "FrameworkServlet.java",
+      "HttpServlet.java",
+      "FrameworkServlet.java",
+      "HttpServlet.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "WsFilter.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "HeaderFilter.java",
+      "OncePerRequestFilter.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "FilterChainProxy.java",
+      "FilterSecurityInterceptor.java",
+      "FilterSecurityInterceptor.java",
+      "FilterChainProxy.java",
+      "ExceptionTranslationFilter.java",
+      "ExceptionTranslationFilter.java",
+      "FilterChainProxy.java",
+      "SessionManagementFilter.java",
+      "SessionManagementFilter.java",
+      "FilterChainProxy.java",
+      "AnonymousAuthenticationFilter.java",
+      "FilterChainProxy.java",
+      "SecurityContextHolderAwareRequestFilter.java",
+      "FilterChainProxy.java",
+      "RequestCacheAwareFilter.java",
+      "FilterChainProxy.java",
+      "JwtAuthenticationFilter.java",
+      "JwtAuthenticationFilter.java",
+      "OncePerRequestFilter.java",
+      "FilterChainProxy.java",
+      "RegistrationTokenCheckFilter.java",
+      "OncePerRequestFilter.java",
+      "FilterChainProxy.java",
+      "JwtThirdPartyFilter.java",
+      "JwtThirdPartyFilter.java",
+      "OncePerRequestFilter.java",
+      "FilterChainProxy.java",
+      "LogoutFilter.java",
+      "LogoutFilter.java",
+      "FilterChainProxy.java",
+      "HeaderWriterFilter.java",
+      "HeaderWriterFilter.java",
+      "OncePerRequestFilter.java",
+      "FilterChainProxy.java",
+      "SecurityContextPersistenceFilter.java",
+      "SecurityContextPersistenceFilter.java",
+      "FilterChainProxy.java",
+      "WebAsyncManagerIntegrationFilter.java",
+      "OncePerRequestFilter.java",
+      "FilterChainProxy.java",
+      "DisableEncodeUrlFilter.java",
+      "OncePerRequestFilter.java",
+      "FilterChainProxy.java",
+      "FilterChainProxy.java",
+      "FilterChainProxy.java",
+      "DelegatingFilterProxy.java",
+      "DelegatingFilterProxy.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "RequestContextFilter.java",
+      "OncePerRequestFilter.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "FormContentFilter.java",
+      "OncePerRequestFilter.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "CharacterEncodingFilter.java",
+      "OncePerRequestFilter.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "CORSFilter.java",
+      "OncePerRequestFilter.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "StandardWrapperValve.java",
+      "StandardContextValve.java",
+      "AuthenticatorBase.java",
+      "StandardHostValve.java",
+      "ErrorReportValve.java",
+      "StandardEngineValve.java",
+      "CoyoteAdapter.java",
+      "Http11Processor.java",
+      "AbstractProcessorLight.java",
+      "AbstractProtocol.java",
+      "NioEndpoint.java",
+      "SocketProcessorBase.java",
+      "ThreadPoolExecutor.java",
+      "ThreadPoolExecutor.java",
+      "TaskThread.java",
+      "Thread.java"
+    ],
+    "userIp.keyword": [
+      "5.121.150.137"
+    ],
+    "status": [
+      "ROLL_BACKED"
+    ],
+    "commandList.onRollbackBehavior": [
+      "ROLLBACK_SEQUENCE"
+    ],
+    "commandList.customerId.keyword": [
+      "34ef4b56-3971-45ba-81fb-f521819be5c3"
+    ],
+    "status.keyword": [
+      "ROLL_BACKED"
+    ],
+    "sagaVersion.keyword": [
+      "12"
+    ],
+    "commandList.requestClassName.keyword": [
+      "com.citydi.microservice.core.shared.model.promissory.inquiry.request.PromissoryInquiryRequestDto"
+    ],
+    "title": [
+      "PROMISSORY_INQUIRY_BY_CUSTOMER_INFO_PROCESS"
+    ],
+    "rollbackException.stackTrace.methodName.keyword": [
+      "executeTask",
+      "executeProcess",
+      "executeProcessAndSecureResult",
+      "inquirePromissoryByCustomerDetails",
+      "promissoryInquireByCustomerDetailsRequest",
+      "invoke",
+      "invoke",
+      "invokeJoinpoint",
+      "proceed",
+      "proceed",
+      "invoke",
+      "proceed",
+      "proceed",
+      "intercept",
+      "promissoryInquireByCustomerDetailsRequest",
+      "invoke",
+      "invoke",
+      "invoke",
+      "doInvoke",
+      "invokeForRequest",
+      "invokeAndHandle",
+      "invokeHandlerMethod",
+      "handleInternal",
+      "handle",
+      "doDispatch",
+      "doService",
+      "processRequest",
+      "doGet",
+      "service",
+      "service",
+      "service",
+      "internalDoFilter",
+      "doFilter",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "doFilter",
+      "invoke",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "checkInternal",
+      "doFilterInternal",
+      "doFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "doFilter",
+      "checkInternal",
+      "doFilterInternal",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doHeadersAfter",
+      "doFilterInternal",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "invokeDelegate",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "doFilterInternal",
+      "doFilter",
+      "internalDoFilter",
+      "doFilter",
+      "invoke",
+      "invoke",
+      "invoke",
+      "invoke",
+      "invoke",
+      "invoke",
+      "service",
+      "service",
+      "process",
+      "process",
+      "doRun",
+      "run",
+      "runWorker",
+      "run",
+      "run",
+      "run"
+    ],
+    "id.keyword": [
+      "1179f75cd7e54d0b8f4fd964e3934a18"
+    ],
+    "commandList.version": [
+      "7.2.1"
+    ],
+    "commandList.sequenceId.keyword": [
+      "1179f75cd7e54d0b8f4fd964e3934a18"
+    ],
+    "applicationName.keyword": [
+      "orchestrator25"
+    ],
+    "@version": [
+      "1"
+    ],
+    "commandList.version.keyword": [
+      "7.2.1"
+    ],
+    "commandList.rollbackRequired": [
+      false
+    ],
+    "applicationName": [
+      "orchestrator25"
+    ],
+    "commandList.platform": [
+      "Android"
+    ],
+    "rollbackException.stackTrace.fileName.keyword": [
+      "ProcessExecutor.java",
+      "ProcessExecutor.java",
+      "ProcessExecutor.java",
+      "PromissoryServiceImpl.java",
+      "PromissoryNoteController.java",
+      "<generated>",
+      "MethodProxy.java",
+      "CglibAopProxy.java",
+      "ReflectiveMethodInvocation.java",
+      "CglibAopProxy.java",
+      "MethodSecurityInterceptor.java",
+      "ReflectiveMethodInvocation.java",
+      "CglibAopProxy.java",
+      "CglibAopProxy.java",
+      "<generated>",
+      "DelegatingMethodAccessorImpl.java",
+      "Method.java",
+      "InvocableHandlerMethod.java",
+      "InvocableHandlerMethod.java",
+      "ServletInvocableHandlerMethod.java",
+      "RequestMappingHandlerAdapter.java",
+      "RequestMappingHandlerAdapter.java",
+      "AbstractHandlerMethodAdapter.java",
+      "DispatcherServlet.java",
+      "DispatcherServlet.java",
+      "FrameworkServlet.java",
+      "FrameworkServlet.java",
+      "HttpServlet.java",
+      "FrameworkServlet.java",
+      "HttpServlet.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "WsFilter.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "HeaderFilter.java",
+      "OncePerRequestFilter.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "FilterChainProxy.java",
+      "FilterSecurityInterceptor.java",
+      "FilterSecurityInterceptor.java",
+      "FilterChainProxy.java",
+      "ExceptionTranslationFilter.java",
+      "ExceptionTranslationFilter.java",
+      "FilterChainProxy.java",
+      "SessionManagementFilter.java",
+      "SessionManagementFilter.java",
+      "FilterChainProxy.java",
+      "AnonymousAuthenticationFilter.java",
+      "FilterChainProxy.java",
+      "SecurityContextHolderAwareRequestFilter.java",
+      "FilterChainProxy.java",
+      "RequestCacheAwareFilter.java",
+      "FilterChainProxy.java",
+      "JwtAuthenticationFilter.java",
+      "JwtAuthenticationFilter.java",
+      "OncePerRequestFilter.java",
+      "FilterChainProxy.java",
+      "RegistrationTokenCheckFilter.java",
+      "OncePerRequestFilter.java",
+      "FilterChainProxy.java",
+      "JwtThirdPartyFilter.java",
+      "JwtThirdPartyFilter.java",
+      "OncePerRequestFilter.java",
+      "FilterChainProxy.java",
+      "LogoutFilter.java",
+      "LogoutFilter.java",
+      "FilterChainProxy.java",
+      "HeaderWriterFilter.java",
+      "HeaderWriterFilter.java",
+      "OncePerRequestFilter.java",
+      "FilterChainProxy.java",
+      "SecurityContextPersistenceFilter.java",
+      "SecurityContextPersistenceFilter.java",
+      "FilterChainProxy.java",
+      "WebAsyncManagerIntegrationFilter.java",
+      "OncePerRequestFilter.java",
+      "FilterChainProxy.java",
+      "DisableEncodeUrlFilter.java",
+      "OncePerRequestFilter.java",
+      "FilterChainProxy.java",
+      "FilterChainProxy.java",
+      "FilterChainProxy.java",
+      "DelegatingFilterProxy.java",
+      "DelegatingFilterProxy.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "RequestContextFilter.java",
+      "OncePerRequestFilter.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "FormContentFilter.java",
+      "OncePerRequestFilter.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "CharacterEncodingFilter.java",
+      "OncePerRequestFilter.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "CORSFilter.java",
+      "OncePerRequestFilter.java",
+      "ApplicationFilterChain.java",
+      "ApplicationFilterChain.java",
+      "StandardWrapperValve.java",
+      "StandardContextValve.java",
+      "AuthenticatorBase.java",
+      "StandardHostValve.java",
+      "ErrorReportValve.java",
+      "StandardEngineValve.java",
+      "CoyoteAdapter.java",
+      "Http11Processor.java",
+      "AbstractProcessorLight.java",
+      "AbstractProtocol.java",
+      "NioEndpoint.java",
+      "SocketProcessorBase.java",
+      "ThreadPoolExecutor.java",
+      "ThreadPoolExecutor.java",
+      "TaskThread.java",
+      "Thread.java"
+    ],
+    "rollbackException.message": [
+      "DIGITAL_SIGNATURE"
+    ],
+    "rollbackException.localeMessage.keyword": [
+      "شماره ملی وارد شده صحیح نمی‌باشد"
+    ],
+    "commandList.deviceId.keyword": [
+      "SM-M315F"
+    ],
+    "commandList.commandContent": [
+      "{\"issuerNN\":\"1700860564\",\"promissoryId\":\"6580276187413132\"}"
+    ],
+    "rollbackException.stackTrace.lineNumber": [
+      224,
+      102,
+      66,
+      185,
+      54,
+      -1,
+      218,
+      793,
+      163,
+      763,
+      61,
+      186,
+      763,
+      708,
+      -1,
+      -1,
+      43,
+      498,
+      205,
+      150,
+      117,
+      895,
+      808,
+      87,
+      1072,
+      965,
+      1006,
+      898,
+      626,
+      883,
+      733,
+      227,
+      162,
+      53,
+      189,
+      162,
+      42,
+      117,
+      189,
+      162,
+      337,
+      115,
+      81,
+      346,
+      122,
+      116,
+      346,
+      126,
+      81,
+      346,
+      109,
+      346,
+      149,
+      346,
+      63,
+      346,
+      115,
+      50,
+      117,
+      346,
+      102,
+      117,
+      346,
+      53,
+      45,
+      117,
+      346,
+      103,
+      89,
+      346,
+      90,
+      75,
+      117,
+      346,
+      112,
+      82,
+      346,
+      55,
+      117,
+      346,
+      42,
+      117,
+      346,
+      221,
+      186,
+      354,
+      267,
+      189,
+      162,
+      100,
+      117,
+      189,
+      162,
+      93,
+      117,
+      189,
+      162,
+      201,
+      117,
+      189,
+      162,
+      28,
+      117,
+      189,
+      162,
+      202,
+      97,
+      542,
+      143,
+      92,
+      78,
+      357,
+      374,
+      65,
+      893,
+      1707,
+      49,
+      1149,
+      624,
+      61,
+      748
+    ],
+    "commandList.routingKey": [
+      "orchestration25.digital.signature.routing.key"
+    ],
+    "@timestamp": [
+      "2026-08-17T09:43:30.637Z"
+    ],
+    "level.keyword": [
+      "INFO"
+    ],
+    "commandList.requestClassName": [
+      "com.citydi.microservice.core.shared.model.promissory.inquiry.request.PromissoryInquiryRequestDto"
+    ],
+    "rollbackException.microServiceName.keyword": [
+      "ORCHESTRATOR"
+    ],
+    "response": [
+      "%{[commandList][0][response]}"
+    ],
+    "commandList.id": [
+      "82be1cc6dcfd414c947ed3998a8d10f1"
+    ],
+    "rollbackException.stackTrace.className": [
+      "com.citydi.microservice.orchestrator.process.ProcessExecutor",
+      "com.citydi.microservice.orchestrator.process.ProcessExecutor",
+      "com.citydi.microservice.orchestrator.process.ProcessExecutor",
+      "com.citydi.microservice.orchestrator.service.promissory.PromissoryServiceImpl",
+      "com.citydi.microservice.orchestrator.rest.promissory.PromissoryNoteController",
+      "com.citydi.microservice.orchestrator.rest.promissory.PromissoryNoteController$$FastClassBySpringCGLIB$$f58035da",
+      "org.springframework.cglib.proxy.MethodProxy",
+      "org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation",
+      "org.springframework.aop.framework.ReflectiveMethodInvocation",
+      "org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation",
+      "org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor",
+      "org.springframework.aop.framework.ReflectiveMethodInvocation",
+      "org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation",
+      "org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor",
+      "com.citydi.microservice.orchestrator.rest.promissory.PromissoryNoteController$$EnhancerBySpringCGLIB$$291ee433",
+      "sun.reflect.GeneratedMethodAccessor6089",
+      "sun.reflect.DelegatingMethodAccessorImpl",
+      "java.lang.reflect.Method",
+      "org.springframework.web.method.support.InvocableHandlerMethod",
+      "org.springframework.web.method.support.InvocableHandlerMethod",
+      "org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod",
+      "org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter",
+      "org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter",
+      "org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter",
+      "org.springframework.web.servlet.DispatcherServlet",
+      "org.springframework.web.servlet.DispatcherServlet",
+      "org.springframework.web.servlet.FrameworkServlet",
+      "org.springframework.web.servlet.FrameworkServlet",
+      "javax.servlet.http.HttpServlet",
+      "org.springframework.web.servlet.FrameworkServlet",
+      "javax.servlet.http.HttpServlet",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.tomcat.websocket.server.WsFilter",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "com.citydi.microservice.orchestrator.filter.HeaderFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.access.intercept.FilterSecurityInterceptor",
+      "org.springframework.security.web.access.intercept.FilterSecurityInterceptor",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.access.ExceptionTranslationFilter",
+      "org.springframework.security.web.access.ExceptionTranslationFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.session.SessionManagementFilter",
+      "org.springframework.security.web.session.SessionManagementFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.authentication.AnonymousAuthenticationFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.savedrequest.RequestCacheAwareFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "com.citydi.microservice.orchestrator.jwt.JwtAuthenticationFilter",
+      "com.citydi.microservice.orchestrator.jwt.JwtAuthenticationFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "com.citydi.microservice.orchestrator.jwt.RegistrationTokenCheckFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "com.citydi.microservice.orchestrator.jwt.JwtThirdPartyFilter",
+      "com.citydi.microservice.orchestrator.jwt.JwtThirdPartyFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.authentication.logout.LogoutFilter",
+      "org.springframework.security.web.authentication.logout.LogoutFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.header.HeaderWriterFilter",
+      "org.springframework.security.web.header.HeaderWriterFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.context.SecurityContextPersistenceFilter",
+      "org.springframework.security.web.context.SecurityContextPersistenceFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.session.DisableEncodeUrlFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.springframework.security.web.FilterChainProxy$VirtualFilterChain",
+      "org.springframework.security.web.FilterChainProxy",
+      "org.springframework.security.web.FilterChainProxy",
+      "org.springframework.web.filter.DelegatingFilterProxy",
+      "org.springframework.web.filter.DelegatingFilterProxy",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.springframework.web.filter.RequestContextFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.springframework.web.filter.FormContentFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.springframework.web.filter.CharacterEncodingFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "com.citydi.microservice.orchestrator.cors.CORSFilter",
+      "org.springframework.web.filter.OncePerRequestFilter",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.ApplicationFilterChain",
+      "org.apache.catalina.core.StandardWrapperValve",
+      "org.apache.catalina.core.StandardContextValve",
+      "org.apache.catalina.authenticator.AuthenticatorBase",
+      "org.apache.catalina.core.StandardHostValve",
+      "org.apache.catalina.valves.ErrorReportValve",
+      "org.apache.catalina.core.StandardEngineValve",
+      "org.apache.catalina.connector.CoyoteAdapter",
+      "org.apache.coyote.http11.Http11Processor",
+      "org.apache.coyote.AbstractProcessorLight",
+      "org.apache.coyote.AbstractProtocol$ConnectionHandler",
+      "org.apache.tomcat.util.net.NioEndpoint$SocketProcessor",
+      "org.apache.tomcat.util.net.SocketProcessorBase",
+      "java.util.concurrent.ThreadPoolExecutor",
+      "java.util.concurrent.ThreadPoolExecutor$Worker",
+      "org.apache.tomcat.util.threads.TaskThread$WrappingRunnable",
+      "java.lang.Thread"
+    ],
+    "userIp": [
+      "5.121.150.137"
+    ],
+    "time": [
+      "2026-08-17T09:43:30.635Z"
+    ],
+    "commandList.commandType.keyword": [
+      "INQUIRY_PROMISSORY"
+    ]
+  }
+}

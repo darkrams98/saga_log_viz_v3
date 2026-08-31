@@ -1,0 +1,40 @@
+server:
+  port: 8080
+  error:
+    include-message: never
+    include-stacktrace: never
+    include-binding-errors: never
+  tomcat:
+    max-http-form-post-size: 256KB
+
+spring:
+  application:
+    name: saga-log-explorer
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+  mvc:
+    problemdetails:
+      enabled: false
+
+logexplorer:
+  # مسیر فایل تفسیر لاگ. با -Dlogexplorer.config=/etc/log-explorer/config.yaml قابل تغییر است.
+  config: config/config.yaml
+  cors:
+    allowed-origins: http://localhost:5173,http://127.0.0.1:5173
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: never
+
+logging:
+  level:
+    root: INFO
+    com.citydi.logexplorer: INFO
+    org.mongodb.driver: WARN

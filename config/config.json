@@ -1,0 +1,338 @@
+{
+  "_راهنما": [
+    "این فایل «چطور نشان بده» را تعیین می‌کند؛ config.yaml کنارش «چطور بخوان» را.",
+    "هیچ کلیدی اجباری نیست. اگر کلیدی نبود، مقدار خام همان فیلد نمایش داده می‌شود.",
+    "بعد از ویرایش: POST /api/v1/meta/config/reload — نیازی به ری‌استارت نیست.",
+    "افزودن میکروسرویس جدید = یک سطر در routingKeys. افزودن دستور جدید = یک سطر در commandTypes."
+  ],
+
+  "routingKeys": {
+    "orchestrator25.smart.transfer.routing.key": "انتقال وجه هوشمند",
+    "orchestrator24.smart.transfer.routing.key": "انتقال وجه هوشمند (نسخهٔ ۲۴)",
+    "rabbitmq.yaghoot25.client.deposit.routing.key": "سپرده",
+    "rabbitmq.yaghoot25-2.client.deposit.routing.key": "سپرده",
+    "rabbitmq.yaghoot24-2.client.deposit.routing.key": "سپرده (نسخهٔ ۲۴)",
+    "rabbitmq.yaghoot25.client.routing.key": "مشتری (یاقوت)",
+    "rabbitmq.yaghoot25-2.client.routing.key": "مشتری (یاقوت)",
+    "rabbitmq.yaghoot24.client.routing.key": "مشتری (نسخهٔ ۲۴)",
+    "rabbitmq.yaghoot24-2.client.routing.key": "مشتری (نسخهٔ ۲۴)",
+    "rabbitmq.yaghoot25.client.auth.routing.key": "احراز هویت",
+    "rabbitmq.yaghoot25-2.client.auth.routing.key": "احراز هویت",
+    "rabbitmq.yaghoot25.client.card.routing.key": "کارت",
+    "rabbitmq.yaghoot25-2.client.card.routing.key": "کارت",
+    "rabbitmq.yaghoot25.client.cheque.routing.key": "چک",
+    "orchestration25.profile.main": "پروفایل — اصلی",
+    "orchestration25.profile.register": "پروفایل — ثبت‌نام",
+    "orchestration25.profile.inquiries": "پروفایل — استعلام‌ها",
+    "orchestration25.profile.ekyc": "پروفایل — احراز هویت غیرحضوری",
+    "orchestration24.chakad.service.routing.key": "چکاد",
+    "orchestration23.notification.routing.key": "اعلان و پیامک",
+    "orchestration25.digital.signature.routing.key": "امضای دیجیتال",
+    "orchestration25.deposit.card.service.routing.key": "کارت و سپرده",
+    "orchestration25.loan.service.routing.key": "تسهیلات"
+  },
+
+  "_راهنمای_routingKeyPatterns": [
+    "تور ایمنی برای نسخه‌های آینده: وقتی نسخهٔ ۲۶ بیاید، routingKey تازه است",
+    "ولی همان میکروسرویس. این الگوها فقط وقتی بررسی می‌شوند که کلید دقیق پیدا نشود.",
+    "به ترتیب بررسی می‌شوند؛ اولین تطبیق برنده است."
+  ],
+  "routingKeyPatterns": [
+    { "match": "\\.deposit\\.", "label": "سپرده" },
+    { "match": "\\.auth\\.", "label": "احراز هویت" },
+    { "match": "\\.card\\.", "label": "کارت" },
+    { "match": "\\.cheque\\.", "label": "چک" },
+    { "match": "smart\\.transfer", "label": "انتقال وجه هوشمند" },
+    { "match": "^orchestration\\d*\\.profile\\.", "label": "پروفایل" },
+    { "match": "notification", "label": "اعلان و پیامک" },
+    { "match": "chakad", "label": "چکاد" },
+    { "match": "\\.loan\\.", "label": "تسهیلات" },
+    { "match": "^rabbitmq\\.yaghoot[\\w-]*\\.client\\.routing\\.key$", "label": "مشتری (یاقوت)" }
+  ],
+
+  "commandTypes": {
+    "GET_CARD_DEPOSIT_LIST": "دریافت فهرست کارت و سپرده",
+    "AGGREGATE_LAST_TRANSACTIONS": "تجمیع آخرین تراکنش‌ها",
+    "TRANSACTION_GET_DESTINATION_INFO": "دریافت اطلاعات مقصد تراکنش",
+    "TRANSACTION_GET_SUGGESTION_TRANSACTION": "پیشنهاد تراکنش‌های اخیر",
+    "PROFILE_VALIDATE_REGISTRATION_TOKEN": "اعتبارسنجی توکن ثبت‌نام",
+    "UPDATE_CARDS_AND_DEPOSITS_INFO": "به‌روزرسانی اطلاعات کارت و سپرده",
+    "SUBMIT_SMART_TRANSFER": "ثبت انتقال وجه هوشمند",
+    "LOGIN_REFRESHTOKEN": "تمدید توکن ورود",
+    "LOGIN_STATIC": "ورود با رمز ثابت",
+    "LOGIN_OAUTH": "ورود با OAuth",
+    "HARIM_OTP": "رمز یک‌بارمصرف حریم",
+    "NOTIFICATION_SEND_OTP": "ارسال رمز یک‌بارمصرف",
+    "CUSTOMER_PROFILE_FILL_CORE_INFO": "تکمیل اطلاعات پایهٔ مشتری",
+    "CUSTOMER_PROFILE_CORE_PROFILE_INQUIRY": "استعلام پروفایل پایه",
+    "CUSTOMER_PROFILE_EXTRACT_INVITATION_CODE": "استخراج کد معرف",
+    "CUSTOMER_PROFILE_INVITER_INQUIRY": "استعلام معرف",
+    "CUSTOMER_PROFILE_EKYC_SESSION_STATE_INQUIRY": "استعلام وضعیت جلسهٔ احراز هویت",
+    "CUSTOMER_EXISTENCE_INQUIRY_CHANNEL_MANAGER": "استعلام وجود مشتری",
+    "PROFILE_CUSTOMER_SHAHKAR_INQUIRY": "استعلام شاهکار",
+    "CUSTOMER_ADDRESS_CITY": "شهر آدرس مشتری",
+    "TICKET_GENERATOR": "صدور تیکت تراکنش",
+    "STATEMENT_INQUERY": "استعلام صورت‌حساب",
+    "CARD_STATEMENT": "صورت‌حساب کارت",
+    "CARD_TRANSFER": "کارت به کارت",
+    "TOP_UP": "شارژ و خرید",
+    "LOAN_LIST": "فهرست تسهیلات",
+    "LOAN_DETAILS": "جزئیات تسهیلات",
+    "CHAKAD_GET_SETTINGS_BY_TYPE": "دریافت تنظیمات چکاد",
+    "SAYAD_CHEQUE_INQUERY_HOLDER": "استعلام دارندهٔ چک صیاد",
+    "SAVE_IBAN_INFO": "ذخیرهٔ اطلاعات شبا",
+    "GET_IBAN_POL_PAY": "دریافت شبای پل‌پی",
+    "GET_TRANSACTION_REASONS": "دریافت بابت تراکنش",
+    "INQUIRY_PROMISSORY_DETAILS_LIST": "استعلام سفته‌ها",
+    "DEPOSIT_CARD_SERVICE_REDUCTION_DEPOSIT_REQUEST_FILTER": "فیلتر درخواست کاهش سپرده",
+
+    "DYNAMIC_LOAN_GET_SESSION": "دریافت جلسهٔ تسهیلات",
+    "DYNAMIC_LOAN_BASIC_INFO_DATA_ENTRY": "ثبت اطلاعات پایهٔ تسهیلات",
+    "DYNAMIC_LOAN_SUBMIT_COLLATERAL_REQUEST": "ثبت درخواست وثیقه",
+    "INQUIRY_PROMISSORY": "استعلام سفته",
+    "BRANCH_LIST": "فهرست شعب",
+    "DEPOSIT_STATUS": "وضعیت سپرده",
+    "NOTIFICATION_IS_OTP_VALID": "بررسی اعتبار رمز یک‌بارمصرف",
+    "REGSITER_USER": "ثبت‌نام کاربر"
+  },
+
+  "statuses": {
+    "COMPLETED": "موفق",
+    "COMPLETE": "موفق",
+    "SUCCESS": "موفق",
+    "ROLL_BACKED": "بازگشت خورده",
+    "ROLLED_BACK": "بازگشت خورده",
+    "ROLLBACK": "بازگشت خورده",
+    "FAILED": "ناموفق",
+    "ERROR": "خطا",
+    "TIMEOUT": "اتمام مهلت",
+    "STARTED": "شروع شده",
+    "IN_PROGRESS": "در حال اجرا",
+    "PENDING": "در انتظار"
+  },
+
+  "_راهنمای_statusSeverity": [
+    "تعیین رنگ گره در گراف و برچسب وضعیت. سه مقدار مجاز: success | error | unknown.",
+    "هر وضعیتی که اینجا نیامده باشد «unknown» (خاکستری) در نظر گرفته می‌شود —",
+    "عمداً، چون حدس‌زدن موفقیت از روی یک وضعیت ناشناخته خطرناک‌تر از گفتن «نمی‌دانم» است."
+  ],
+  "statusSeverity": {
+    "COMPLETED": "success",
+    "COMPLETE": "success",
+    "SUCCESS": "success",
+    "ROLL_BACKED": "error",
+    "ROLLED_BACK": "error",
+    "ROLLBACK": "error",
+    "FAILED": "error",
+    "ERROR": "error",
+    "TIMEOUT": "error"
+  },
+
+  "_راهنمای_titles": [
+    "عنوان‌های تولید مهر زمانی و شناسه دارند:",
+    "  SEQ__GET_CARD_DEPOSIT_LIST__2026-08-24_12:46:59",
+    "  LOAN_DETAILS_343.679.69507242.169507242",
+    "پس زنجیرهٔ جستجو این است: کلید دقیق → کلید نرمال‌شده → commandType → مقدار خام."
+  ],
+  "titles": {
+    "SEQ__GET_CARD_DEPOSIT_LIST": "دریافت فهرست کارت و سپرده",
+    "SEQ__AGGREGATE_LAST_TRANSACTIONS": "تجمیع آخرین تراکنش‌ها",
+    "SEQ__TRANSACTION_GET_DESTINATION_INFO": "بررسی اطلاعات مقصد انتقال",
+    "SEQ__UPDATE_CARDS_AND_DEPOSITS_INFO": "به‌روزرسانی کارت‌ها و سپرده‌ها",
+    "SEQ__SUBMIT_SMART_TRANSFER": "ثبت انتقال وجه هوشمند",
+    "SEQ__CHAKAD_GET_SETTINGS_BY_TYPE": "دریافت تنظیمات چکاد",
+    "SEQ__SAVE_IBAN_INFO": "ذخیرهٔ اطلاعات شبا",
+    "SEQ__CUSTOMER_PROFILE_EXTRACT_INVITATION_CODE": "استخراج کد معرف",
+    "SEQ__CUSTOMER_PROFILE_INVITER_INQUIRY": "استعلام معرف",
+    "SEQ__CUSTOMER_ADDRESS_CITY": "دریافت شهر آدرس مشتری",
+    "SEQ__SAYAD_CHEQUE_INQUERY_HOLDER": "استعلام دارندهٔ چک صیاد",
+    "SEQ__INQUIRY_PROMISSORY_DETAILS_LIST": "استعلام سفته‌ها",
+    "SEQ__DEPOSIT_CARD_SERVICE_REDUCTION_DEPOSIT_REQUEST_FILTER": "فیلتر درخواست کاهش سپرده",
+    "SEQ__GET_TRANSACTION_REASONS": "دریافت بابت تراکنش",
+    "SEQ__GET_IBAN_POL_PAY": "دریافت شبای پل‌پی",
+    "SEQ__TICKET_GENERATOR": "صدور تیکت تراکنش",
+    "TRANSACTION_GET_SUGGESTION_TRANSACTION": "پیشنهاد تراکنش‌های اخیر",
+    "LOGIN_PROCESS_TITLE": "فرایند ورود کاربر",
+    "LOGIN_REFRESHTOKEN": "تمدید توکن ورود",
+    "LOGIN_OAUTH": "ورود با OAuth",
+    "HARIM_OTP_TRANSFER": "رمز یک‌بارمصرف انتقال وجه",
+    "START_EKYC_PROCESS": "شروع احراز هویت غیرحضوری",
+    "TICKET_GENERATOR": "صدور تیکت تراکنش",
+    "STATEMENT_INQUERY_null": "استعلام صورت‌حساب",
+    "CARD_STATEMENT": "صورت‌حساب کارت",
+    "CARD_TRANSFER": "کارت به کارت",
+    "TOP_UP": "شارژ و خرید",
+    "LOAN_LIST": "فهرست تسهیلات",
+    "LOAN_DETAILS": "جزئیات تسهیلات",
+
+    "CHECK_CUSTOMER_SESSION": "بررسی نشست کاربر",
+    "VALIDATE_REGISTER_TOKEN_TASK_TITLE": "اعتبارسنجی توکن ثبت‌نام",
+    "YAGHOOT_LOGIN_STATIC_TASK_TITLE": "ورود با رمز ثابت",
+    "YAGHOOT_CUSTOMER_EXISTENCE_INQUIRY_TASK": "استعلام وجود مشتری",
+    "CUSTOMER_PROFILE_FILL_CORE_INFO_TASK": "تکمیل اطلاعات پایهٔ مشتری",
+    "CUSTOMER_CORE_PROFILE_INQUIRY_TASK": "استعلام پروفایل پایه",
+    "GET_LAST_CUSTOMER_EKYC_SESSION_REQUEST_TASK": "آخرین جلسهٔ احراز هویت",
+    "EKYC_CUSTOMER_SHAHKAR_INQUIRY": "استعلام شاهکار",
+    "EKYC_OPT_SEND_TASK": "ارسال رمز یک‌بارمصرف احراز هویت",
+    "CMD__SAVE_IBAN_INFO": "ذخیرهٔ اطلاعات شبا",
+
+    "REGISTER_PROCESS": "فرایند ثبت‌نام",
+    "REGISTER_CUSTOMER_PROFILE_TASK": "ثبت پروفایل مشتری",
+    "REGISTRATION_OTP_VALIDATION_TASK": "اعتبارسنجی رمز یک‌بارمصرف ثبت‌نام",
+    "BASIC_INFO_DATA_ENTRY_PROCESS": "فرایند ثبت اطلاعات پایه",
+    "BASIC_INFO_DATA_ENTRY_TASK": "ثبت اطلاعات پایه",
+    "GET_SESSION_TASK": "دریافت جلسه",
+    "SUBMIT_COLLATERAL_PROCESS": "فرایند ثبت وثیقه",
+    "SUBMIT_COLLATERAL_TASK": "ثبت وثیقه",
+    "GET_BANK_BRANCH_INFO_TASK": "دریافت اطلاعات شعبه",
+    "GET_DEPOSIT_AVERAGE_DETAILS_FORM_YAGHOOT_TASK": "جزئیات میانگین سپرده",
+    "PROMISSORY_INQUIRY_BY_CUSTOMER_INFO_PROCESS": "فرایند استعلام سفته",
+    "INQUIRY_PROMISSORY_TASK": "استعلام سفته"
+  },
+
+  "_راهنمای_fieldLabels": "برچسب ستون‌های نمای جدولی و کارت خلاصه. کلید = مسیر فیلد.",
+  "fieldLabels": {
+    "_id": "شناسهٔ لاگ",
+    "title": "عنوان عملیات",
+    "status": "وضعیت کلی",
+    "startDate": "زمان شروع",
+    "creationDate": "زمان ایجاد",
+    "completeDate": "زمان پایان",
+    "registerId": "شناسهٔ مشتری",
+    "userIp": "آی‌پی کاربر",
+    "platform": "پلتفرم",
+    "deviceId": "شناسهٔ دستگاه",
+    "deviceBrand": "برند دستگاه",
+    "version": "نسخهٔ اپ",
+    "sagaVersion": "نسخهٔ Saga",
+    "sequenceContext": "زمینهٔ اجرا",
+    "commandList": "فهرست مراحل",
+    "commandList._id": "شناسهٔ مرحله",
+    "commandList.title": "عنوان مرحله",
+    "commandList.status": "وضعیت مرحله",
+    "commandList.commandType": "نوع دستور",
+    "commandList.commandContent": "ورودی درخواست",
+    "commandList.response": "خروجی پاسخ",
+    "commandList.routingKey": "میکروسرویس گیرنده",
+    "commandList.rollbackDescription": "شرح خطا / بازگشت",
+    "commandList.rollbackRequired": "نیاز به بازگشت",
+    "commandList.onRollbackBehavior": "رفتار هنگام بازگشت",
+    "commandList.StartDate": "زمان شروع مرحله",
+    "commandList.commandUser": "کاربر مرحله",
+    "commandList.customerId": "شناسهٔ مشتری (مرحله)",
+    "commandList.sequenceId": "شناسهٔ توالی",
+    "commandList.requestClassName": "کلاس درخواست",
+    "commandList.userIP": "آی‌پی (مرحله)"
+  },
+
+  "_راهنمای_summary": [
+    "فیلدهای *اضافی* کارت خلاصه. عنوان، وضعیت، زمان شروع/پایان و مدت اجرا",
+    "همیشه نمایش داده می‌شوند و اینجا تکرارشان لازم نیست.",
+    "اینجا جای اطلاعاتی است که به شناسایی کاربر و دستگاه کمک می‌کند."
+  ],
+  "summaryFields": [
+    { "path": "registerId", "label": "شناسهٔ مشتری", "copy": true },
+    { "path": "userIp", "label": "آی‌پی", "copy": true },
+    { "path": "platform", "label": "پلتفرم" },
+    { "path": "deviceBrand", "label": "دستگاه" },
+    { "path": "deviceId", "label": "شناسهٔ دستگاه", "copy": true },
+    { "path": "version", "label": "نسخهٔ اپ" },
+    { "path": "sagaVersion", "label": "نسخهٔ Saga" }
+  ],
+
+  "_راهنمای_graph": [
+    "چیدمان افقی راست‌به‌چپ، هم‌راستا با RTL.",
+    "هر گره = یک میکروسرویس (routingKey)، هر یال = ترتیب اجرا در commandList."
+  ],
+  "graph": {
+    "layout": "horizontal-rtl",
+    "source": "commandList",
+    "nodeLabelFrom": "routingKey",
+    "nodeSubLabelFrom": "commandType",
+    "statusFrom": "status",
+    "errorTextFrom": ["rollbackDescription"],
+    "detailFields": ["title", "commandType", "routingKey", "status",
+                     "commandContent", "response", "rollbackDescription", "StartDate"],
+    "mergeRepeatedService": false,
+    "showStartEnd": true,
+    "startLabel": "درخواست کاربر",
+    "endLabel": "پایان فرایند",
+    "colors": {
+      "success": "#0ca30c",
+      "error": "#d03b3b",
+      "unknown": "#8a8f98"
+    }
+  },
+
+  "_راهنمای_search": [
+    "جستجوی عادی فقط روی فیلدهایی که اینجا آمده‌اند و indexed:true دارند.",
+    "برای افزودن یک فیلد ایندکس‌شدهٔ جدید کافی است یک آیتم به normalFields اضافه کنید.",
+    "اگر ایندکس واقعاً در MongoDB ساخته نشده باشد، در /meta/health هشدار داده می‌شود."
+  ],
+  "search": {
+    "normalFields": [
+      {
+        "field": "_id",
+        "label": "شناسهٔ لاگ (_id)",
+        "type": "auto",
+        "indexed": true,
+        "default": true,
+        "placeholder": "شناسه‌ای که از ELK گرفته‌اید را اینجا بچسبانید",
+        "hint": "این همان _id مونگو است و روی آن ایندکس یکتا وجود دارد."
+      },
+      {
+        "field": "registerId",
+        "label": "شناسهٔ مشتری (registerId)",
+        "type": "string",
+        "indexed": false,
+        "enabled": false,
+        "hint": "برای فعال‌سازی: اول ایندکس را بسازید، بعد indexed و enabled را true کنید."
+      }
+    ],
+    "advanced": {
+      "enabled": true,
+      "maxResults": 20,
+      "maxTimeMs": 15000,
+      "warning": "این جستجو روی فیلدهای بدون ایندکس اجرا می‌شود و MongoDB مجبور است اسناد را یکی‌یکی بخواند. روی مجموعهٔ چندمیلیونی ممکن است چند ثانیه طول بکشد و به سرور فشار بیاورد. تا جای ممکن از شناسه استفاده کنید.",
+      "operators": [
+        { "op": "eq",       "label": "برابر است با",        "mongo": "$eq" },
+        { "op": "ne",       "label": "برابر نیست با",       "mongo": "$ne" },
+        { "op": "contains", "label": "شامل متن",            "mongo": "$regex" },
+        { "op": "prefix",   "label": "شروع می‌شود با",       "mongo": "$regex" },
+        { "op": "gt",       "label": "بزرگ‌تر از",           "mongo": "$gt" },
+        { "op": "gte",      "label": "بزرگ‌تر یا مساوی",     "mongo": "$gte" },
+        { "op": "lt",       "label": "کوچک‌تر از",           "mongo": "$lt" },
+        { "op": "lte",      "label": "کوچک‌تر یا مساوی",     "mongo": "$lte" },
+        { "op": "exists",   "label": "وجود دارد",           "mongo": "$exists" },
+        { "op": "in",       "label": "یکی از (با کاما جدا)", "mongo": "$in" }
+      ],
+      "suggestedFields": [
+        { "field": "status", "label": "وضعیت کلی" },
+        { "field": "title", "label": "عنوان عملیات" },
+        { "field": "registerId", "label": "شناسهٔ مشتری" },
+        { "field": "userIp", "label": "آی‌پی کاربر" },
+        { "field": "deviceId", "label": "شناسهٔ دستگاه" },
+        { "field": "platform", "label": "پلتفرم" },
+        { "field": "commandList.commandType", "label": "نوع دستور در مراحل" },
+        { "field": "commandList.routingKey", "label": "میکروسرویس در مراحل" },
+        { "field": "commandList.status", "label": "وضعیت مرحله" },
+        { "field": "commandList.rollbackDescription", "label": "متن خطای مرحله" }
+      ],
+      "resultFields": [
+        { "path": "_id", "label": "شناسه" },
+        { "path": "title", "label": "عملیات", "translate": "titles" },
+        { "path": "status", "label": "وضعیت", "translate": "statuses" },
+        { "path": "startDate", "label": "زمان", "type": "datetime" }
+      ]
+    }
+  },
+
+  "_راهنمای_privacy": [
+    "secretsOnly = فقط رمز، OTP، توکن و CVV حذف می‌شوند (پیش‌فرض؛ برای عیب‌یابی لازم است).",
+    "partial    = علاوه بر آن، کد ملی و موبایل و شمارهٔ حساب هم به‌صورت ۱۲۳****۴۵ ماسک می‌شوند.",
+    "off        = هیچ پوشاندنی انجام نمی‌شود. فقط اگر کل محیط قابل اعتماد است."
+  ],
+  "privacy": {
+    "maskingProfile": "secretsOnly"
+  }
+}

@@ -1,0 +1,382 @@
+# =====================================================================
+#  پیکربندی «کاوشگر لاگ» — تفسیر لاگ بدون تغییر کد
+# =====================================================================
+#  این فایل تنها جایی است که سیستم دربارهٔ شکل لاگ‌ها چیزی «می‌داند».
+#  هستهٔ برنامه هیچ فیلدی را از پیش نمی‌شناسد؛ هر چیزی که اینجا ننویسید
+#  باز هم در «نمای درختی» و «JSON خام» دیده می‌شود، فقط ستون اختصاصی ندارد.
+#
+#  قاعدهٔ همیشگی: هر فهرست candidates به‌ترتیب اولویت بررسی می‌شود و
+#  اولین مقدار معتبر برنده است. اگر هیچ‌کدام نبود → «نامشخص»، نه خطا.
+#
+#  مسیرها از این نحو پشتیبانی می‌کنند:
+#     a.b.c            فیلد تودرتو
+#     a[0].b           عنصر مشخص از آرایه
+#     a[*].b           همهٔ عناصر آرایه
+#     a.b#json.c       فیلدی که *رشتهٔ* JSON است، parse شود و بعد ادامه
+# =====================================================================
+
+mongo:
+  uri: ${MONGO_URI:mongodb://localhost:27017}
+  database: ${MONGO_DB:saga}
+  collection: ${MONGO_COLLECTION:sagaSequence}
+  # secondaryPreferred تا بار روی نود اصلی نیفتد. مقادیر مجاز:
+  # primary | primaryPreferred | secondary | secondaryPreferred | nearest
+  readPreference: secondaryPreferred
+  connectTimeoutMs: 5000
+  serverSelectionTimeoutMs: 5000
+  socketTimeoutMs: 30000
+  # سقف زمان اجرای هر پرس‌وجو در سمت سرور MongoDB
+  queryTimeoutMs: 8000
+  aggregationTimeoutMs: 15000
+  # اگر true باشد، هر تلاش برای نوشتن یک استثنا پرتاب می‌کند (پیشنهاد: همیشه true)
+  enforceReadOnly: true
+
+limits:
+  defaultPageSize: 25
+  maxPageSize: 200
+  # شمارش دقیق فقط تا این عدد؛ بیشتر از آن «+۱۰٬۰۰۰» نمایش داده می‌شود
+  countCap: 10000
+  # اگر کاربر بازه ندهد، این بازه اعمال می‌شود (هیچ پرس‌وجوی بی‌کران اجرا نمی‌شود)
+  defaultRangeHours: 24
+  # بازهٔ بزرگ‌تر از این رد می‌شود تا کوئری سنگین ساخته نشود
+  maxRangeDays: 31
+  # نمای درختی حداکثر این تعداد گره تولید می‌کند
+  maxFlattenNodes: 3000
+  maxDepth: 15
+  # مقدار طولانی‌تر از این در نمای خلاصه بریده می‌شود
+  previewChars: 400
+  # فیلد بزرگ‌تر از این «سنگین» است و فقط با درخواست جدا خوانده می‌شود
+  largeValueBytes: 2000
+  # حجم کل سند بالاتر از این → فقط خلاصه، بدون نمای درختی کامل
+  maxDocumentBytes: 4000000
+  # تعداد سندی که برای کشف خودکار فیلدها نمونه‌برداری می‌شود
+  schemaSampleSize: 300
+
+# ---------------------------------------------------------------- زمان
+time:
+  # ترتیب اهمیت برای «زمان لاگ». اولین مقدار قابل تبدیل برنده است و
+  # منبعش هم در UI نمایش داده می‌شود تا کاربر بداند عدد از کجا آمده.
+  candidates:
+    - startDate
+    - creationDate
+    - "@timestamp"
+    - timestamp
+    - time
+    - createdAt
+    - eventTime
+    - "commandList[0].StartDate"
+    - "commandList[0].startDate"
+
+  # فیلدی که برای بازهٔ زمانی و مرتب‌سازی *به خود MongoDB* داده می‌شود.
+  # حتماً باید ایندکس داشته باشد (به ops/indexes.js نگاه کنید).
+  queryField: startDate
+
+  # auto | date | epoch_millis | epoch_seconds | iso_string
+  # با auto، برنامه هنگام راه‌اندازی یک سند می‌خواند و نوع واقعی را تشخیص می‌دهد.
+  queryFieldType: auto
+
+  # فیلد دوم مرتب‌سازی برای صفحه‌بندی keyset (باید یکتا باشد)
+  tieBreakField: _id
+
+  displayTimezone: Asia/Tehran
+
+  # قالب‌های رشته‌ای که هنگام تبدیل امتحان می‌شوند
+  stringFormats:
+    - "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+    - "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    - "yyyy-MM-dd'T'HH:mm:ssXXX"
+    - "yyyy-MM-dd HH:mm:ss.SSS"
+    - "yyyy-MM-dd HH:mm:ss"
+    - "yyyy/MM/dd HH:mm:ss"
+
+# -------------------------------------------------------- فیلدهای منطقی
+fields:
+  id:
+    candidates: ["_id", "id", "sequenceId", "traceId"]
+  # پیام لاگ. توجه: در دادهٔ فعلی، لاگ‌های موفق اصلاً «پیام» ندارند و این
+  # درست است — ستون «عنوان» آن‌ها را می‌شناساند. عمداً به title برنمی‌گردیم
+  # تا ستون پیام تکرار ستون عنوان نشود؛ اگر در استقرار دیگری لازم بود،
+  # کافی است title را به انتهای همین فهرست اضافه کنید.
+  message:
+    candidates:
+      - message
+      - msg
+      - errorMessage
+      - "error.message"
+      - rollbackDescription
+      - "rollbackException.localeMessage"
+      - "commandList[*].rollbackDescription"
+  service:
+    candidates: ["applicationName", "service", "serviceName", "app", "_class"]
+    transform: shortenClassName
+  status:
+    candidates: ["status", "state", "result", "outcome"]
+  user:
+    candidates: ["commandList[*].commandUser", "userId", "user", "username"]
+  clientIp:
+    candidates: ["userIp", "userIP", "clientIp", "ip", "commandList[*].userIP"]
+  correlationId:
+    candidates: ["_id", "sequenceId", "traceId", "correlationId", "requestId"]
+
+# ------------------------------------------------------------- سطح لاگ
+level:
+  # ترتیب تصمیم‌گیری. پیش‌فرض عمومی ["field", "derive"] است، ولی در همین
+  # سامانه لاگ‌های قدیمی Elasticsearch فیلد level را *همیشه* INFO می‌نویسند
+  # حتی وقتی فرایند ROLL_BACKED شده. اگر به آن فیلد اعتماد کنیم، ردیفی که
+  # فیلتر «فقط خطاها» برگردانده، در جدول «اطلاعات» نشان داده می‌شود —
+  # بدترین حالت: فیلتر و نمایش با هم اختلاف داشته باشند.
+  # پس اینجا وضعیت را معتبرتر می‌دانیم.
+  precedence: ["derive", "field"]
+  # اگر لاگ فیلد صریح سطح دارد، از اینجا خوانده می‌شود
+  candidates: ["level", "severity", "logLevel", "log_level"]
+  # وگرنه از روی وضعیت ساخته می‌شود
+  deriveFrom: ["status", "state", "result"]
+  map:
+    COMPLETED: INFO
+    COMPLETE: INFO
+    SUCCESS: INFO
+    SUCCEEDED: INFO
+    OK: INFO
+    ROLL_BACKED: ERROR
+    ROLLED_BACK: ERROR
+    ROLLBACK: ERROR
+    FAILED: ERROR
+    FAILURE: ERROR
+    ERROR: ERROR
+    FATAL: ERROR
+    SEVERE: ERROR
+    TIMEOUT: WARN
+    WARN: WARN
+    WARNING: WARN
+    PENDING: DEBUG
+    STARTED: DEBUG
+    IN_PROGRESS: DEBUG
+  default: INFO
+  # کدام سطح‌ها «خطا» شمرده می‌شوند (برای کارت‌های داشبورد)
+  errorLevels: ["ERROR", "FATAL"]
+  labels:
+    ERROR: "خطا"
+    WARN: "هشدار"
+    INFO: "اطلاعات"
+    DEBUG: "اشکال‌زدایی"
+
+# ------------------------------------------------------- تبدیل‌های متنی
+# تبدیل‌های عمومی و قابل استفاده در columns و fields.
+transforms:
+  # SEQ__GET_CARD_DEPOSIT_LIST__2026-08-24_12:46:59  →  SEQ__GET_CARD_DEPOSIT_LIST
+  # یک یا دو زیرخط قبل از تاریخ، چون هر دو شکل در دادهٔ واقعی دیده شده:
+  #   SEQ__X__2026-08-24_12:46:59  و  SEQ__SAVE_IBAN_INFO_IR4001…_2026-08-24_12:46:59
+  stripTrailingTimestamp:
+    type: regexReplace
+    pattern: "_{1,2}\\d{4}-\\d{2}-\\d{2}[_ T]\\d{2}[:.]\\d{2}[:.]\\d{2}.*$"
+    replacement: ""
+  # LOGIN_PROCESS_TITLE_24114761KK       →  LOGIN_PROCESS_TITLE
+  # LOAN_DETAILS_343.679.69507242.16950  →  LOAN_DETAILS
+  # نقطه هم مجاز است چون شناسه‌های حساب با نقطه جدا می‌شوند
+  stripTrailingIdentifier:
+    type: regexReplace
+    pattern: "_[A-Za-z0-9.]*[0-9][A-Za-z0-9.]*$"
+    replacement: ""
+  # LOGIN_OAUTH_ → LOGIN_OAUTH
+  stripTrailingUnderscore:
+    type: regexReplace
+    pattern: "_+$"
+    replacement: ""
+  # com.citydi.microservice.orchestrator.model.SagaSequence  →  SagaSequence
+  shortenClassName:
+    type: regexReplace
+    pattern: "^.*\\."
+    replacement: ""
+  # زنجیره: اول مهر زمانی، بعد شناسه
+  normalizeTitle:
+    type: chain
+    steps: [stripTrailingTimestamp, stripTrailingIdentifier, stripTrailingUnderscore]
+
+# ------------------------------------------------------- ستون‌های جدول
+# فقط نمایش را تعیین می‌کند. حذف یا افزودن ستون هیچ کدی را نمی‌شکند.
+columns:
+  - key: time
+    label: "زمان"
+    source: field          # field = فیلد منطقی بالا | path = مسیر خام
+    type: datetime
+    width: 168
+  - key: level
+    label: "سطح"
+    source: field
+    type: level
+    width: 86
+  - key: status
+    label: "وضعیت"
+    source: field
+    type: badge
+    width: 118
+  - key: titleGroup
+    label: "عنوان"
+    source: path
+    path: title
+    transform: normalizeTitle
+    type: text
+    width: 250
+  - key: message
+    label: "پیام"
+    source: field
+    type: text
+    grow: true
+  - key: service
+    label: "سرویس"
+    source: field
+    type: text
+    width: 140
+  - key: id
+    label: "شناسه"
+    source: field
+    type: id
+    width: 132
+    copy: true
+
+# ------------------------------------------------ فیلترهای دسته‌ای (facet)
+# هر مورد یک dropdown در نوار فیلتر و یک نمودار «برترین‌ها» در داشبورد می‌سازد.
+# indexed=false یعنی aggregation روی این فیلد کند است → UI هشدار می‌دهد.
+facets:
+  - { path: "status",     label: "وضعیت",       indexed: true,  topN: 8 }
+  - { path: "title",      label: "نوع فرایند",  indexed: true,  topN: 10, transform: normalizeTitle }
+  - { path: "platform",   label: "پلتفرم",      indexed: false, topN: 6 }
+  - { path: "deviceBrand", label: "برند دستگاه", indexed: false, topN: 8 }
+  - { path: "version",    label: "نسخهٔ اپ",     indexed: false, topN: 6 }
+  - { path: "sagaVersion", label: "نسخهٔ Saga",  indexed: false, topN: 4 }
+
+# ------------------------------------------------------------- جستجو
+search:
+  # تطبیق دقیق — اگر ایندکس داشته باشد بسیار سریع است
+  exactFields:
+    - { path: "_id",                   label: "شناسهٔ فرایند" }
+    - { path: "registerId",            label: "شناسهٔ مشتری" }
+    - { path: "userIp",                label: "آی‌پی" }
+    - { path: "commandList._id",       label: "شناسهٔ مرحله" }
+    - { path: "commandList.sequenceId", label: "شناسهٔ توالی" }
+    - { path: "commandList.customerId", label: "شناسهٔ مشتری (مرحله)" }
+    - { path: "deviceId",              label: "شناسهٔ دستگاه" }
+
+  # regex — کند. فقط وقتی اجرا می‌شود که کاربر صریحاً «جستجوی عمیق» را بزند
+  # یا بازهٔ زمانی از deepSearchMaxRangeHours کوتاه‌تر باشد.
+  regexFields:
+    - { path: "title" }
+    - { path: "commandList.title" }
+    - { path: "commandList.commandType" }
+    - { path: "commandList.rollbackDescription" }
+    - { path: "commandList.routingKey" }
+
+  # این فیلدها رشتهٔ JSON هستند؛ جستجو در آن‌ها گران‌ترین حالت است
+  deepScanFields:
+    - { path: "commandList.commandContent" }
+    - { path: "commandList.response" }
+
+  deepSearchMaxRangeHours: 6
+  regexCaseInsensitive: true
+
+  # تشخیص خودکار نوع ورودی کاربر
+  detectors:
+    - name: hex32
+      label: "شناسهٔ فرایند یا مرحله"
+      pattern: "^[0-9a-fA-F]{32}$"
+      normalize: lowercase
+      fields: ["_id", "commandList._id", "commandList.sequenceId"]
+    - name: objectId
+      label: "ObjectId"
+      pattern: "^[0-9a-fA-F]{24}$"
+      normalize: lowercase
+      fields: ["_id"]
+      asObjectId: true
+    - name: uuid
+      label: "شناسهٔ مشتری"
+      pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+      normalize: lowercase
+      fields: ["registerId", "commandList.customerId"]
+    - name: ipv4
+      label: "آی‌پی"
+      pattern: "^\\d{1,3}(\\.\\d{1,3}){3}$"
+      fields: ["userIp", "commandList.userIP"]
+    - name: mobile
+      label: "شماره موبایل"
+      pattern: "^(\\+?98|0)?9\\d{9}$"
+      normalize: mobileIR
+      fields: []
+      deepScan: true
+    - name: nationalCode
+      label: "کد ملی"
+      pattern: "^\\d{10}$"
+      normalize: digits
+      fields: []
+      deepScan: true
+    - name: freeText
+      label: "متن آزاد"
+      pattern: ".*"
+      fields: []
+
+# -------------------------------------------------------- دادهٔ حساس
+masking:
+  enabled: true
+  placeholder: "[حذف‌شده به دلیل امنیتی]"
+  # این‌ها هرگز نمایش داده نمی‌شوند (نه ماسک — کاملاً جایگزین می‌شوند)
+  secretFields:
+    [password, passwd, pwd, passwordhash, hashedpassword, otp, sentotp, otpcode,
+     pin, token, accesstoken, refreshtoken, jwt, secret, apikey, clientsecret,
+     authorization, signature, cvv, cvv2]
+  rules:
+    - { fields: [nationalcode, nationalid, registrationnationalcode, issuernn, childnationid],
+        strategy: keepEdges, head: 3, tail: 2 }
+    - { fields: [mobile, mobilenumber, mobilephonenumber, cellphone],
+        strategy: mobileIR }
+    - { fields: [depositnumber, depositnumbers, accountnumber, ibannumber, iban, pan,
+                 cardnumber, sourcedeposit, destinationdeposit, destinationcard],
+        strategy: keepEdges, head: 4, tail: 3 }
+    - { fields: [balance, availablebalance, blockedamount, extraavailablebalance],
+        strategy: fixed, value: "***" }
+    - { fields: [address, fulladdress, postaladdress],
+        strategy: truncate, keep: 12 }
+    - { fields: [postalcode, jobpostalcode, residencepostalcode, zipcode],
+        strategy: keepEdges, head: 3, tail: 2 }
+    - { fields: [firstname, lastname, fullname, customername, ownername, deposittitle],
+        strategy: initials }
+    - { fields: [birthdate, dateofbirth],
+        strategy: yearOnly }
+    - { fields: [userip, clientip, remoteip, ipaddress],
+        strategy: ipPrefix }
+  # این‌ها با وجود شباهت اسمی حساس نیستند و پشتیبان به آن‌ها نیاز دارد
+  allowList: [loanamount, installmentamount, amount, totalrepaymentamount, wageamount,
+              timespan, installmentscount, loaninterestrate, transferamount]
+  # ماسک کردن مقادیر حساسی که داخل متن آزاد چسبیده‌اند
+  freeText: true
+
+# --------------------------------------------------------------- نمایش
+display:
+  # این مسیرها از projection لیست حذف می‌شوند تا صفحهٔ نتایج سبک بماند.
+  # در صفحهٔ جزئیات با درخواست جداگانه خوانده می‌شوند.
+  heavyPaths:
+    - "commandList.response"
+    - "commandList.commandContent"
+    - "response"
+    - "stackTrace"
+    - "rollbackException.stackTrace"
+  # اصلاً نمایش داده نمی‌شوند
+  hiddenPaths: ["_class"]
+  # رشته‌هایی که JSON هستند خودکار parse و به‌صورت درختی نمایش داده شوند
+  autoParseJsonStrings: true
+  emptyLabel: "نامشخص"
+  # این مسیرها در بالای نمای جزئیات به‌صورت «کارت خلاصه» می‌آیند
+  highlightPaths: ["registerId", "userIp", "platform", "deviceBrand", "deviceId", "version", "sagaVersion"]
+
+# --------------------------------------------------------------- داشبورد
+dashboard:
+  # بازه‌های آماده
+  presets:
+    - { value: "15m", label: "۱۵ دقیقهٔ گذشته", minutes: 15 }
+    - { value: "1h",  label: "یک ساعت گذشته",  minutes: 60 }
+    - { value: "6h",  label: "۶ ساعت گذشته",   minutes: 360 }
+    - { value: "24h", label: "۲۴ ساعت گذشته",  minutes: 1440 }
+    - { value: "7d",  label: "۷ روز گذشته",    minutes: 10080 }
+  defaultPreset: "24h"
+  # تعداد ستون‌های نمودار زمانی؛ بازه به این تعداد بخش تقسیم می‌شود
+  timeBuckets: 48
+  # aggregation روی بازه‌های بزرگ‌تر از این با هشدار همراه است
+  heavyAggregationAboveHours: 48
